@@ -1,67 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" name="Fernanda">
-    <meta name="description" content="Lupe's Rentacar, Renta de autos Lupe.">
-    <meta name="keywords" content="renta de autos, renta de carros, lupe, fernanda, auto, automóvil, renta, rent a car">
-    <title>Lupe's Rentacar</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="icons/coche-electrico.png" type="image/x-icon">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="css/estils.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
     <header>
-        <div id="logo">
-            <img src="icons/logo.svg" alt="Lupe's Rentacar">
-            <h1>Rentacar</h1>
-        </div>
+        <h1>Carrito de la compra</h1>
 
-        <div id="menu">
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div id="presentacio">
+            <h2>Aplicación para comprar fruta</h2>
+            <p>Elige la fruta que deseas haciendo click sobre su imagen.</p>
 
-        <div id="login">
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit">Buscar</button>
-            </div>
-
-            <div class="login">
-                <button type="submit">Login</button>
-            </div>
         </div>
     </header>
+    <main class="container">
 
-    <main>
+        <section class="productes">
+            <div>
+                <img loading="lazy" class="imatges" src="img/aranja.png" alt="Aranja">
+                <p>Pomelo : 2,50€/kg</p>
+            </div>
 
+            <div>
+                <img loading="lazy" class="imatges" src="img/kiwi.png" alt="Kiwi">
+                <p>Kiwi : 4,20€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/llimones.png" alt="Llimones">
+                <p>Limón : 1,20€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/pinya.png" alt="Pinya">
+                <p>Piña : 2.80€/ud</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/sindria.png" alt="Sindria">
+                <p>Sandía: 1,20€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/aguacates.jpg" alt="Aguacates">
+                <p>Aguacate : 2,50€/ud</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/freson.jpg" alt="Fresón">
+                <p>Fresón : 6,20€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/mandarina.jpg" alt="Mandarina">
+                <p>Mandarina : 1,90€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/manzana_fuji.jpg" alt="Manzana Fuji">
+                <p>Manzana Fuji : 4,20€/kg</p>
+            </div>
+
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/platans.png" alt="Plátanos">
+                <p>Plátanos: 3,20€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/pera.jpg" alt="Pera">
+                <p>Pera : 1,80€/kg</p>
+            </div>
+
+            <div>
+                <img loading="lazy" class="imatges" src="img/manzana_golden.jpg" alt="Manzana Golden">
+                <p>Manzana Golden: 3,50€/kg</p>
+            </div>
+        </section>
+
+        <section>
+            <div id="totalCompra"><span id="total"><i class="fas fa-shopping-cart fa-sm"></i>Total Compra: <span id="preuFinal">0,00€</span></span></div>
+            <p id="carrito"></p>
+
+        </section>
     </main>
 
-    <footer>
-        <p>Todos los derechos reservados &copy; Lupe's Rentacar 2021</p>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="social-media">
-            <a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="icons/twitter.png" alt="Twitter"></a>
-        </div>
-        <div class="newsletter">
-            <h3>Suscríbete a nuestra newsletter</h>
-        </div>
-    </footer>
+    <script src="js/cart.js"></script>
+    <script src="js/itemselection.js"></script>
 </body>
+
 </html>

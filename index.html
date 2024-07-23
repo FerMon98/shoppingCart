@@ -87,6 +87,17 @@
             </div>
         </section>
 
+        <!-- Añadiendo una caja modal para poder preguntarles a los usuarios cantidades-->
+         <section id="modal" class="modal hidden">
+            <div class="overlay hidden">
+                <label for="quantity"></label>
+                <span class="close">&times;</span>
+                <h2>¿Cuántos kilos deseas de esta fruta?</h2>
+                <input type="number" id="quantity" min="0" placeholder="d">
+                <button class="btn btn-open" onclick="addItem(event)">Añadir al carrito</button>
+            </div>
+         </section>
+
         <section>
             <div id="totalCompra"><span id="total"><i class="fas fa-shopping-cart fa-sm"></i>Total Compra: <span id="preuFinal">0,00€</span></span></div>
             <p id="carrito"></p>

@@ -88,22 +88,34 @@
         </section>
 
         <!-- Añadiendo una caja modal para poder preguntarles a los usuarios cantidades-->
-         <section id="modal" class="modal hidden">
-            <div class="overlay hidden">
-                <label for="quantity"></label>
-                <span class="close">&times;</span>
-                <h2>¿Cuántos kilos deseas de esta fruta?</h2>
-                <input type="number" id="quantity" min="0" placeholder="d">
-                <button class="btn btn-open" onclick="addItem(event)">Añadir al carrito</button>
-            </div>
-         </section>
 
         <section>
             <div id="totalCompra"><span id="total"><i class="fas fa-shopping-cart fa-sm"></i>Total Compra: <span id="preuFinal">0,00€</span></span></div>
-            <p id="carrito"></p>
+            <div id="carrito">
+                <ul id="carritoHead">
+                    <li>Producto</li>
+                    <li>Precio</li>
+                    <li>Cantidad</li>
+                    <li>Total</li>
+                </ul>
+                <ul id="carritoList">
+                    
+                </ul>
+            </div>
 
+            <!-- He eliminado <p> porque no me servía para nada -->
         </section>
     </main>
+
+    <!-- Añado una caja modal para preguntarles a los usuarios cantidades-->
+    <div class="overlay hidden">
+        <div class="modal">
+            
+            <h2><span class="btn-close">&times;</span> ¿Cuántos kilos deseas de esta fruta?</h2>
+            <input type="number" id="quantity" min="0" placeholder="Cantidad">
+            <button class="btn btn-open" onclick="addItem(event)">Añadir al carrito</button>
+        </div>
+    </div>
 
     <script src="js/cart.js"></script>
     <script src="js/itemselection.js"></script>

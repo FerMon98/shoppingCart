@@ -2,19 +2,43 @@
 pero deberás justificarlo.
 Recuerda la importancia comentar con detalle el código. Lo importante es el cálculo, no los estilos css*/
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////  Working on the Modal box and creating objects  ///////////////////////////////////////////////////////
 
-//Genera un Prompt para que el usuario pueda indicar cantidades por producto elegido
-
-const showPrompt = () => prompt('Introduce la cantidad del producto deseado:');
-
-//Obtener el DOM de La sección dónde están los productos y sus divs.
-
+// Select the DOM elements
+const overlay = document.querySelector('.overlay');
+const btnClose = document.querySelector('.btn-close');
 const productsSection = document.querySelector('.productes');
 let selectedProduct = productsSection.querySelectorAll('div');
 
+let selectedItem =null;
 // Crear un array para almacenar los objetos de productos
 let productsArray = [];
+
+// Function to show the modal and save the selected product
+function showModal(ev) {
+    const clickedDiv = ev.currentTarget;
+    const imgElement = clickedDiv.querySelector('img');
+    selectedItem = imgElement.getAttribute('alt');
+    overlay.classList.remove('hidden');
+    overlay.style.display = 'flex';
+}
+
+// Function to hide the modal
+function hideModal() {
+    overlay.classList.add('hidden');
+    overlay.style.display = 'none';
+}
+
+// Event listeners for opening and closing the modal
+selectedProduct.forEach(div => {
+    div.addEventListener('click', showModal);
+});
+
+
+
+btnClose.addEventListener('click', hideModal);
+
+
 
 // Obtener el valor de alt en cada imagen de cada producto y almacenarla en un array
 selectedProduct.forEach(product => {
@@ -36,9 +60,6 @@ selectedProduct.forEach(product => {
     if (priceStr) {
         price = parseFloat(priceStr[0].replace(',', '.'));
     }
-    
-    // Añadir evento click al producto para mostrar un prompt para ingresar la cantidad
-    product.addEventListener('click', showPrompt);
 
     // Asignar el tipo de unidad a los productos
     if (getPelement.includes("kg")) {
@@ -52,6 +73,7 @@ selectedProduct.forEach(product => {
         item: altText,
         precio: price,
         unidad: unidad,
+        quantity: 0
     };
 
     productsArray.push(selectedProductObject);
@@ -61,3 +83,42 @@ selectedProduct.forEach(product => {
 });
 
 console.log(productsArray);
+console.log(productsArray[0].item)
+
+
+/////////////////////////////////////////////  Working on the shopping Cart  //////////////////////////////////////////////////////////
+
+// Get DOM element for carritoList
+let carritoUl = document.querySelector("#carritoList");
+
+//Variable for product quantity
+let quantity;
+
+// Hide the modal box and get quantity from input and add item to cart
+
+function addItem(event) {
+    quantity = parseFloat(document.querySelector("#quantity").value);
+    if (quantity > 0 && selectedItem) {
+        productsArray.forEach(object => {
+            if (object.item === selectedItem) {
+                object.quantity += quantity;
+
+                // Add item to cart list
+                let cartItem = document.createElement("li");
+                cartItem.textContent = `${object.item} - ${object.precio}€/kg - ${quantity}${object.unidad} - ${object.precio * quantity}€`;
+                carritoUl.appendChild(cartItem);
+
+                // Update total price
+                updateTotal();
+            }
+        });
+
+        hideModal();
+    }
+}
+
+// Function to update the total price
+function updateTotal() {
+    let total = productsArray.reduce((acc, product) => acc + (product.precio * product.quantity), 0);
+    document.querySelector('#preuFinal').textContent = `${total.toFixed(2)}€`;
+}

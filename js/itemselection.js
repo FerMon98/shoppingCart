@@ -88,7 +88,11 @@ console.log(productsArray[0].item)
 
 /////////////////////////////////////////////  Working on the shopping Cart  //////////////////////////////////////////////////////////
 
-// Get DOM element for carritoList
+// Get DOM element for the product List and each section
+let productSection = document.querySelector('#productoLi');
+let precioSection = document.querySelector('#precioLi');
+let cantidadSection = document.querySelector('cantidadLi');
+let totalSection = document.querySelector('#totalLi');
 let carritoUl = document.querySelector("#carritoList");
 
 //Variable for product quantity
@@ -105,8 +109,14 @@ function addItem(event) {
 
                 // Add item to cart list
                 let cartItem = document.createElement("li");
-                cartItem.textContent = `${object.item} - ${object.precio}€/kg - ${quantity}${object.unidad} - ${object.precio * quantity}€`;
-                carritoUl.appendChild(cartItem);
+
+                cartItem.textContent = 
+                `${object.item} 
+                - ${object.precio}€/kg 
+                - ${quantity}${object.unidad} 
+                - ${object.precio * quantity}€`;
+
+                productSection.appendChild(cartItem);
 
                 // Update total price
                 updateTotal();

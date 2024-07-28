@@ -4,9 +4,8 @@ Recuerda la importancia comentar con detalle el código. Lo importante es el cá
 
 ////////////////////////////////////////////////  Working on the Modal box and creating objects  ///////////////////////////////////////////////////////
 
-document.addEventListener('DOMContentLoaded', () => {
 // Select the DOM elements
-const overlay = document.querySelector('.overlay');
+const overlay = document.querySelector(".overlay");
 const btnClose = document.querySelector('.btn-close');
 const productsSection = document.querySelector('.productes');
 let selectedProduct = productsSection.querySelectorAll('div');
@@ -88,49 +87,52 @@ console.log(productsArray);
 
 /////////////////////////////////////////////  Working on the shopping Cart  //////////////////////////////////////////////////////////
 
-// Get DOM element for the product List and final Purchase button
+// Get DOM element for the product List and final Purchase button.
 let carritoList = document.querySelector("#productsLi tbody");
-let finalPurchase = document.querySelector("#finalPurchase");
-console.log(finalPurchase);
+let printPurchase = document.querySelector("#printPurchase");
 
 //Variable for product quantity
 let quantity;
 
 // Hide the modal box and get quantity from input and add item to cart
 
-function addItem(event) {
+function addItem() {
     quantity = parseFloat(document.querySelector("#quantity").value);
 
-    if (quantity <= 0) {
-        // Hide finalPurchase button if quantity is not a valid number or less than 0
-        finalPurchase.classList.add('hidden');
-        return; // Exit the function early
-    }
 
-    if (quantity > 0 && selectedItem) {
-        finalPurchase.classList.remove('hidden');
+    if (quantity > 0) {
+        printPurchase.classList.remove('hidden');
 
         productsArray.forEach(object => {
             if (object.item === selectedItem) {
                 object.quantity += quantity;
 
-                // Add item to cart list
+                // Creating table row and each cell, 
                 let cartRow = document.createElement("tr");
                 let cartItem = document.createElement("td");
                 let cartPrice = document.createElement("td");
                 let cartQuantity = document.createElement("td");
                 let cartTotal = document.createElement("td");
+                let deleteItemIcon = document.createElement("td");
 
+                // Add trash icon to delete button
+                let trashIcon = document.createElement("i");
+                trashIcon.classList.add("fa", "fa-trash");
+                trashIcon.addEventListener("click", deleteProduct);
+
+                //Adding details from the selected product to each cell
                 cartItem.textContent = `${object.item}`;
                 cartPrice.textContent = `${object.precio}`;
                 cartQuantity.textContent = `${quantity}${object.unidad} `;
                 cartTotal.textContent = `${(object.precio * quantity).toFixed(2)} €`;
+                deleteItemIcon.appendChild(trashIcon);
 
-
+                //Showing that data in the assigned row
                 cartRow.appendChild(cartItem);
                 cartRow.appendChild(cartPrice);
                 cartRow.appendChild(cartQuantity);
                 cartRow.appendChild(cartTotal);
+                cartRow.appendChild(deleteItemIcon);
 
                 // Append the new row before the total row
                 carritoList.insertBefore(cartRow, document.querySelector("#totalRow"));
@@ -140,10 +142,19 @@ function addItem(event) {
             }
         });
         
-        quantity.value = '';
+        //Reset Quantity value to null to refresh input
+        document.querySelector("#quantity").value = null;
         hideModal();
         
     }
+}
+
+
+function deleteProduct(ev) {
+    const clickedItem = ev.currentTarget;
+    const cartRow = clickedItem.parentElement.parentElement;
+    cartRow.remove();
+    updateTotal();
 }
 
 // Function to update the total price
@@ -152,4 +163,3 @@ function updateTotal() {
     document.querySelector('#preuFinal').textContent = `${total.toFixed(2)}€`;
 }
 
-}); // DOMContentLoaded event listener ends here

@@ -92,6 +92,10 @@ p {
     display: none; /* Hide overlay */
 }
 
+.hidden {
+    display: none; /* Hide element */
+}
+
 .modal {
     display: flex;
     flex-direction: column;
@@ -151,10 +155,10 @@ button {
 }
 
 table {
-    border-radius: 30px;
+    border-radius: 15px;
     border-spacing: 0;
     line-height: 3rem;
-
+    overflow: hidden;
 }
 
 tbody {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/estils.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -26,8 +27,9 @@
     <main class="container">
 
         <section class="productes">
+            <!-- Poniendo todos los nombres en castellano -->
             <div>
-                <img loading="lazy" class="imatges" src="img/aranja.png" alt="Aranja">
+                <img loading="lazy" class="imatges" src="img/aranja.png" alt="Pomelo">
                 <p>Pomelo : 2,50€/kg</p>
             </div>
 
@@ -37,17 +39,17 @@
             </div>
 
             <div>
-                <img loading="lazy" class="imatges" src="img/llimones.png" alt="Llimones">
+                <img loading="lazy" class="imatges" src="img/llimones.png" alt="Limón">
                 <p>Limón : 1,20€/kg</p>
             </div>
 
             <div>
-                <img loading="lazy" class="imatges" src="img/pinya.png" alt="Pinya">
+                <img loading="lazy" class="imatges" src="img/pinya.png" alt="Piña">
                 <p>Piña : 2.80€/ud</p>
             </div>
 
             <div>
-                <img loading="lazy" class="imatges" src="img/sindria.png" alt="Sindria">
+                <img loading="lazy" class="imatges" src="img/sindria.png" alt="Sandía">
                 <p>Sandía: 1,20€/kg</p>
             </div>
 
@@ -97,12 +99,13 @@
                         <th class="carritoHead">Precio</th>
                         <th class="carritoHead">Cantidad</th>
                         <th class="carritoHead">Total</th>
+                        <th class="carritoHead">Delete</th>
                     </thead>
                     <tbody>
                         
                         <tr id="totalRow">
-                            <td colspan="4">
-                                <button id="finalPurchase" onclick="">Ir a compra final</button>
+                            <td colspan="5" id="printPurchase" class="hidden">
+                                <button id="finalPurchase">Ir a compra final</button>
                             </td>
                         </tr>
                     </tbody>
@@ -120,11 +123,11 @@
             
             <h2><span class="btn-close">&times;</span> ¿Cuántos kilos deseas de esta fruta?</h2>
             <input type="number" id="quantity" min="0" placeholder="Cantidad">
-            <button class="btn btn-open" onclick="addItem(event)">Añadir al carrito</button>
+            <button class="btn btn-open" onclick="addItem()">Añadir al carrito</button>
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+   <script src="js/app.js"></script>
 </body>
 
 

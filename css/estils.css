@@ -120,7 +120,7 @@ button {
     font-weight: 600;
 }
 
-.btn {
+.btn, #finalPurchase {
     display: inline-block;
     padding: 0.8rem 1.4rem;
     font-weight: 700;
@@ -150,18 +150,21 @@ button {
     font-size: 1.2rem;
 }
 
-#carrito ul {
-    list-style-type: none;
+table {
+    border-radius: 30px;
+    border-spacing: 0;
+    line-height: 3rem;
+
 }
 
-#carritoHead {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+tbody {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.carritoHead {
     background-color: black;
     color: white;
-    border-radius: 30px;
-    padding: 0.5rem 1rem;
 }
 
 #total {

@@ -22,6 +22,7 @@
 
         </div>
     </header>
+
     <main class="container">
 
         <section class="productes">
@@ -90,15 +91,23 @@
         <section>
             <div id="totalCompra"><span id="total"><i class="fas fa-shopping-cart fa-sm"></i>Total Compra: <span id="preuFinal">0,00€</span></span></div>
             <div id="carrito">
-                <ul id="carritoHead">
-                    <li id="productoLi">Producto</li>
-                    <li id="precioLi">Precio</li>
-                    <li id="cantidadLi">Cantidad</li>
-                    <li id="totalLi">Total</li>
-                </ul>
-                <ul id="carritoList">
+                <table id="productsLi">
+                    <thead>
+                        <th class="carritoHead">Producto</th>
+                        <th class="carritoHead">Precio</th>
+                        <th class="carritoHead">Cantidad</th>
+                        <th class="carritoHead">Total</th>
+                    </thead>
+                    <tbody>
+                        
+                        <tr id="totalRow">
+                            <td colspan="4">
+                                <button id="finalPurchase" onclick="">Ir a compra final</button>
+                            </td>
+                        </tr>
+                    </tbody>
                     
-                </ul>
+                </table>
             </div>
 
             <!-- He eliminado <p> porque no me servía para nada -->
@@ -115,8 +124,9 @@
         </div>
     </div>
 
-    <script src="js/cart.js"></script>
-    <script src="js/itemselection.js"></script>
+    <script src="js/app.js"></script>
 </body>
+
+
 
 </html>

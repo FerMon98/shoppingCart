@@ -115,6 +115,8 @@
 
             <!-- He eliminado <p> porque no me servía para nada -->
         </section>
+
+
     </main>
 
     <!-- Añado una caja modal para preguntarles a los usuarios cantidades-->
@@ -126,6 +128,28 @@
             <button class="btn btn-open" onclick="addItem()">Añadir al carrito</button>
         </div>
     </div>
+    
+    <!-- Añado una caja modal para mostrar el resumen de la compra-->
+    <div id="finalPurchaseModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Resumen de la compra</h2>
+            <table id="modalCartItems">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- Items will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
    <script src="js/app.js"></script>
 </body>

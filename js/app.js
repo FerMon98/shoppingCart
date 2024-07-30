@@ -88,7 +88,6 @@ console.log(productsArray);
 // Get DOM element for the product List and final Purchase button.
 let carritoList = document.querySelector("#productsLi tbody");
 let printPurchase = document.querySelector("#printPurchase");
-let carritoListElements = carritoList.querySelectorAll("tr");
 
 
 //Variable for product quantity
@@ -125,8 +124,8 @@ function addItem() {
             //Adding details from the selected product to each cell
             
             cartItem.textContent = `${object.item}`;
-            cartPrice.textContent = `${object.precio}`;
-            cartQuantity.textContent = `${quantity}${object.unidad} `;
+            cartPrice.textContent = `${object.precio}/${object.unidad}`;
+            cartQuantity.textContent = `${quantity} ${object.unidad}`;
             cartTotal.textContent = `${(object.precio * quantity).toFixed(2)} €`;
             deleteItemIcon.appendChild(trashIcon);
 
@@ -152,7 +151,6 @@ function addItem() {
         }
     });
 
-    console.log(cartItems)
         
     //Reset Quantity value to null to refresh input
     document.querySelector("#quantity").value = null;
@@ -169,10 +167,13 @@ function deleteProduct(ev) {
     updateTotal();
 }
 
+//Variable for saving final total
+let preuFinal;
+
 // Function to update the total price
 function updateTotal() {
     let total = productsArray.reduce((acc, product) => acc + (product.precio * product.quantity), 0);
-    document.querySelector('#preuFinal').textContent = `${total.toFixed(2)}€`;
+    preuFinal = document.querySelector('.preuFinal').textContent = `${total.toFixed(2)}€`;
 }
  
 /////////////////////////////////////////////  Working on the final purchase Modal  //////////////////////////////////////////////////////////
@@ -186,44 +187,62 @@ const finalPurchaseBtn = document.getElementById("finalPurchase");
 // Array to track cart items
 let cartItems = [];
 
-function cartItemsArray (carritoList) {
+// Function to get elements from the shoping table and save each one of them as objects into an array.
+function cartItemsArray(carritoList) {
+    cartItems = []; // Clear the array before populating it
 
-    for (let i = 0; i < carritoList.rows.length; i++) {
-        let row = carritoList.rows[i];
-        let item = row.cells[0].textContent;
-        let price = parseFloat(row.cells[1].textContent);
-        let quantity = parseInt(row.cells[2].textContent.split(' ')[0]);
-        let total = price * quantity;
+    // Get all <tr> elements within the table body, excluding the totalRow
+    let rows = carritoList.querySelectorAll("tr:not(#totalRow):not(#printPurchase)");
+
+    // Iterate over each row, and for each row, get the text content of each cell, and convert everything into an object
+    rows.forEach(row => {
+        let cells = row.cells;
+
+        // Assigning the value for each cell
+        let item = cells[0].textContent;
+        let price = parseFloat(cells[1].textContent.split(' ')[0]);
+        let quantity = parseFloat(cells[2].textContent.split(' ')[0]);
+        let unity = cells[2].textContent.split(' ')[1];
+        let total = parseFloat(cells[3].textContent);
 
         // Create an object for each item with its properties
         let selectedProductObject = {
             item: item,
             price: price,
             quantity: quantity,
+            unity: unity,
             total: total
         };
 
-        cartItems.push(selectedProductObject); // Add item to the cartItems object
-    }
-  
+        cartItems.push(selectedProductObject); // Add item object to the cartItems array
+    });
 }
 
-cartItemsArray();
+
 
 // Function to update the modal with cart items
 function updateModalCart() {
+    //Getting the updated list
+    cartItemsArray(carritoList);
 
-
+    // Getting the ul section and clearing its contents
     const modalCartItems = document.querySelector("#modalCartItems");
     modalCartItems.innerHTML = ''; // Clear previous items
 
-    Object.values(cartItems).forEach(item => {
-       modalCartItems.innerHTML = `<li>${item.item} -  x${item.quantity} ..... ${item.total}`;
+    // Looping through the cartItems array and adding each item to the modal's list
+    cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.item}    -    x${item.quantity}${item.unity}  .......    ${item.total.toFixed(2)} €`;
+        modalCartItems.appendChild(li);
     });
+
+    
+    document.querySelector('#finalprice').textContent = preuFinal;
 }
 
 // Function to show the modal and save the selected product
 function showFinal() {
+    updateModalCart(); // Update the modal with the current cart items
     finalPurchaseModal.style.display = 'flex';
 }
 

@@ -100,7 +100,7 @@ tbody {
     color: white;
 }
 
-#total {
+.total {
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -113,7 +113,7 @@ tbody {
     font-size: 1.5rem;
 }
 
-#totalCompra {
+.totalCompra {
     display: fixed;
     position: sticky;
     justify-items: right;
@@ -126,29 +126,10 @@ tbody {
     display: none;
 }
 
-/* Añadiendo CSS para la caja Modal final */
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+#finalPurchase {
+    margin-bottom: 0.7rem;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 /* Añadiendo CSS para la caja de confirmación */
 
@@ -221,7 +202,7 @@ button {
     cursor: pointer;
 }
 
-/* Añadiendo CSS para la caja de confirmación */
+/* Añadiendo CSS para la caja Modal final */
 
 #finalPurchaseModal {
     display: none;
@@ -232,32 +213,65 @@ button {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.8);
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: black;
+    color: white;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
+    height: max-content;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.modal-content h2 {
+    color: white;
+    width: 45%;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    border-radius: 30px;
+    width: 50%;
+    line-height: 2.5rem;
+}
+
+#compraFinal {
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 1.7rem;
 }
 
 .close {
-    color: #aaa;
+    background-color: rgba(215, 209, 209, 0.326);
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    width: 10%;
+    border-radius: 50px;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: blue;
     text-decoration: none;
     cursor: pointer;
+    cursor: grab;
 }
+
+
+
+
+
+

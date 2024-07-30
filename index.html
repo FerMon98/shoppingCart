@@ -130,23 +130,14 @@
     </div>
     
     <!-- Añado una caja modal para mostrar el resumen de la compra-->
-    <div id="finalPurchaseModal" class="modal hidden">
+    <div id="finalPurchaseModal" class="modalTotal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Resumen de la compra</h2>
-            <table id="modalCartItems">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
+            
+            <h2><span class="close">&times;</span>Resumen de la compra</h2>
+            <ul id="modalCartItems">
                 <!-- Items will be dynamically added here -->
-                </tbody>
-            </table>
+            </ul>
+
         </div>
     </div>
 </section>

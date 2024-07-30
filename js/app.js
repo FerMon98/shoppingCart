@@ -35,9 +35,7 @@ selectedProduct.forEach(div => {
 });
 
 
-
 btnClose.addEventListener('click', hideModal);
-
 
 
 // Obtener el valor de alt en cada imagen de cada producto y almacenarla en un array
@@ -176,78 +174,65 @@ function updateTotal() {
     let total = productsArray.reduce((acc, product) => acc + (product.precio * product.quantity), 0);
     document.querySelector('#preuFinal').textContent = `${total.toFixed(2)}€`;
 }
-
-
-// Array to track cart items
-let cartItems = [];
-
-function cartItemsArray () {
-
-    for (let i = 0; i < 5; i++) {
-
-        for (let j = 0; i < 4; j++) {
-
-            newItem = {
-                item: j,
-                price: j,
-                quantity: j,
-                total: j
-            }
-            cartItems.push(newItem);
-        }
-    }
-}
-
-cartItemsArray();
+ 
+/////////////////////////////////////////////  Working on the final purchase Modal  //////////////////////////////////////////////////////////
 
 // Get the modal
 const finalPurchaseModal = document.getElementById("finalPurchaseModal");
 const modalCloseBtn = document.querySelector(".close");
 const finalPurchaseBtn = document.getElementById("finalPurchase");
 
-// Event listener to open the modal
-finalPurchaseBtn.addEventListener("click", () => {
-    updateModalCart();
-    finalPurchaseModal.style.display = "block";
-});
 
-// Event listener to close the modal
-modalCloseBtn.addEventListener("click", () => {
-    finalPurchaseModal.style.display = "none";
-});
+// Array to track cart items
+let cartItems = [];
 
-// Close the modal when clicking outside of it
-window.addEventListener("click", (event) => {
-    if (event.target == finalPurchaseModal) {
-        finalPurchaseModal.style.display = "none";
+function cartItemsArray (carritoList) {
+
+    for (let i = 0; i < carritoList.rows.length; i++) {
+        let row = carritoList.rows[i];
+        let item = row.cells[0].textContent;
+        let price = parseFloat(row.cells[1].textContent);
+        let quantity = parseInt(row.cells[2].textContent.split(' ')[0]);
+        let total = price * quantity;
+
+        // Create an object for each item with its properties
+        let selectedProductObject = {
+            item: item,
+            price: price,
+            quantity: quantity,
+            total: total
+        };
+
+        cartItems.push(selectedProductObject); // Add item to the cartItems object
     }
-});
+  
+}
+
+cartItemsArray();
 
 // Function to update the modal with cart items
 function updateModalCart() {
 
-    cartItemsArray();
 
-    const modalCartItems = document.querySelector("#modalCartItems tbody");
+    const modalCartItems = document.querySelector("#modalCartItems");
     modalCartItems.innerHTML = ''; // Clear previous items
 
     Object.values(cartItems).forEach(item => {
-        let row = document.createElement("tr");
-        let itemName = document.createElement("td");
-        let itemPrice = document.createElement("td");
-        let itemQuantity = document.createElement("td");
-        let itemTotal = document.createElement("td");
-
-        itemName.textContent = item.item;
-        itemPrice.textContent = item.precio.toFixed(2) + " €";
-        itemQuantity.textContent = item.quantity + " " + item.unidad;
-        itemTotal.textContent = (item.precio * item.quantity).toFixed(2) + " €";
-
-        row.appendChild(itemName);
-        row.appendChild(itemPrice);
-        row.appendChild(itemQuantity);
-        row.appendChild(itemTotal);
-
-        modalCartItems.appendChild(row);
+       modalCartItems.innerHTML = `<li>${item.item} -  x${item.quantity} ..... ${item.total}`;
     });
 }
+
+// Function to show the modal and save the selected product
+function showFinal() {
+    finalPurchaseModal.style.display = 'flex';
+}
+
+// Function to hide the modal
+function hideFinal() {
+    finalPurchaseModal.style.display = 'none';
+}
+
+// Event listeners for opening and closing the modal
+
+finalPurchaseBtn.addEventListener('click', showFinal);
+modalCloseBtn.addEventListener('click', hideFinal);
